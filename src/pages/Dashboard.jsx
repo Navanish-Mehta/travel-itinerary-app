@@ -125,15 +125,6 @@ const activitiesByDate = {
   '1': [],
 };
 
-const dateTabs = [
-  { label: '27', month: 'JAN', day: 'MON' },
-  { label: '28', month: '', day: 'TUE' },
-  { label: '29', month: '', day: 'WED' },
-  { label: '30', month: '', day: 'THU' },
-  { label: '31', month: '', day: 'FRI' },
-  { label: '1', month: 'FEB', day: 'SAT' },
-];
-
 function Dashboard({ theme = 'light', toggleTheme }) {
   const navigate = useNavigate();
   const [selectedDate] = useState('27');
