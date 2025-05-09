@@ -144,11 +144,14 @@ function Dashboard({ theme, toggleTheme }) {
   const cardText = theme === 'dark' ? '#fff' : '#18171c';
   const secondaryText = theme === 'dark' ? '#bdbdbd' : '#6b6b6b';
   const footerBg = theme === 'dark' ? '#23222a' : '#e0e0e0';
+  const highlight = theme === 'dark' ? '#d6ff00' : '#b3d900';
+  const accentBg = theme === 'dark' ? '#35343c' : '#f7f7fa';
 
   // Navigation handlers
   const goHome = () => navigate('/');
   const goSearch = () => navigate('/search');
   const goFavorites = () => navigate('/favorites');
+  const goProfile = () => navigate('/profile');
   const openOnboarding = () => navigate('/onboarding');
 
   return (

@@ -44,6 +44,7 @@ export default function Search({ theme = 'light', toggleTheme }) {
   const cardText = theme === 'dark' ? '#fff' : '#18171c';
   const secondaryText = theme === 'dark' ? '#bdbdbd' : '#6b6b6b';
   const footerBg = theme === 'dark' ? '#23222a' : '#e0e0e0';
+  const highlight = theme === 'dark' ? '#d6ff00' : '#b3d900';
 
   function handleSearch(e) {
     e.preventDefault();
