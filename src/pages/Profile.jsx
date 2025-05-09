@@ -30,12 +30,9 @@ export default function Profile({ theme = 'light', toggleTheme }) {
   const navigate = useNavigate();
   const cardBg = theme === 'dark' ? '#23222a' : '#fff';
   const cardText = theme === 'dark' ? '#fff' : '#18171c';
-  const accentBg = theme === 'dark' ? '#2d3bfa' : '#e3e8ff';
-  const accentText = theme === 'dark' ? '#23222a' : '#2d3bfa';
-  const borderColor = theme === 'dark' ? '#23222a' : '#e0e0e0';
-  const highlight = theme === 'dark' ? '#d6ff00' : '#b3d900';
   const secondaryText = theme === 'dark' ? '#bdbdbd' : '#6b6b6b';
   const footerBg = theme === 'dark' ? '#23222a' : '#e0e0e0';
+  const highlight = theme === 'dark' ? '#d6ff00' : '#b3d900';
 
   return (
     <div style={{ background: theme === 'dark' ? '#18171c' : '#f7f7fa', minHeight: '100vh', paddingBottom: 80, color: cardText, transition: 'background 0.3s, color 0.3s' }}>

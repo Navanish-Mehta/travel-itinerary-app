@@ -136,61 +136,12 @@ const dateTabs = [
 
 function Dashboard({ theme, toggleTheme }) {
   const navigate = useNavigate();
-  const [showAllHotels, setShowAllHotels] = useState(false);
-  const [selectedDate, setSelectedDate] = useState('27');
-  const [showAllFlights, setShowAllFlights] = useState(false);
-  const [showAllActivities, setShowAllActivities] = useState(false);
+  const [selectedDate] = useState('27');
   const activities = activitiesByDate[selectedDate] || [];
-
-  // Mock extra flight segments
-  const extraFlights = [
-    {
-      date: '02.02.2025, 7:30 pm',
-      from: 'NRT',
-      fromCity: 'Narita, Tokyo',
-      to: 'DEL',
-      toCity: 'Delhi, India',
-      flightNo: 'JL749',
-      duration: '8h 10m',
-      status: 'Scheduled',
-    },
-    {
-      date: '26.01.2025, 6:00 am',
-      from: 'DEL',
-      fromCity: 'Delhi, India',
-      to: 'BOM',
-      toCity: 'Mumbai, India',
-      flightNo: 'AI101',
-      duration: '2h 10m',
-      status: 'Completed',
-    },
-  ];
-
-  // Mock extra activities
-  const extraActivities = [
-    {
-      title: 'Ginza Shopping',
-      time: '6:00 pm',
-      duration: '2 hours',
-      pickup: 'From Hotel',
-      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-    },
-    {
-      title: 'Night Food Tour',
-      time: '8:30 pm',
-      duration: '3 hours',
-      pickup: 'From Ginza',
-      image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80',
-    },
-  ];
 
   // Card and section backgrounds based on theme
   const cardBg = theme === 'dark' ? '#23222a' : '#fff';
   const cardText = theme === 'dark' ? '#fff' : '#18171c';
-  const accentBg = theme === 'dark' ? '#2d3bfa' : '#e3e8ff';
-  const accentText = theme === 'dark' ? '#23222a' : '#2d3bfa';
-  const borderColor = theme === 'dark' ? '#23222a' : '#e0e0e0';
-  const highlight = theme === 'dark' ? '#d6ff00' : '#b3d900';
   const secondaryText = theme === 'dark' ? '#bdbdbd' : '#6b6b6b';
   const footerBg = theme === 'dark' ? '#23222a' : '#e0e0e0';
 
@@ -198,8 +149,7 @@ function Dashboard({ theme, toggleTheme }) {
   const goHome = () => navigate('/');
   const goSearch = () => navigate('/search');
   const goFavorites = () => navigate('/favorites');
-  const goProfile = () => navigate('/profile');
-  const openOnboarding = () => navigate('/Onboarding');
+  const openOnboarding = () => navigate('/onboarding');
 
   return (
     <div style={{

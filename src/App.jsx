@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { AppProvider } from './context/AppContext';
 import { Routes, Route } from 'react-router-dom';
-import ThemeToggle from './components/ThemeToggle';
 import Home from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -32,7 +31,6 @@ export default function App() {
           <Route path="/onboarding" element={<Onboarding theme={theme} toggleTheme={toggleTheme} />} />
           <Route path="*" element={<NotFound theme={theme} toggleTheme={toggleTheme} />} />
         </Routes>
-        {/* <ThemeToggle /> No longer needed, handled in each page */}
       </div>
     </AppProvider>
   );

@@ -10,7 +10,6 @@ export default function Login({ theme = 'light', toggleTheme }) {
   const cardBg = theme === 'dark' ? '#23222a' : '#fff';
   const cardText = theme === 'dark' ? '#fff' : '#18171c';
   const secondaryText = theme === 'dark' ? '#bdbdbd' : '#6b6b6b';
-  const highlight = theme === 'dark' ? '#d6ff00' : '#b3d900';
 
   function handleLogin(e) {
     e.preventDefault();
