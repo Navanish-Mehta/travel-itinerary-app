@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/travel-itinerary-app/static/css/main.14e3c6d0.css",
-    "main.js": "/travel-itinerary-app/static/js/main.b3a30f35.js",
+    "main.js": "/travel-itinerary-app/static/js/main.ee2cb8f4.js",
     "index.html": "/travel-itinerary-app/index.html",
     "main.14e3c6d0.css.map": "/travel-itinerary-app/static/css/main.14e3c6d0.css.map",
-    "main.b3a30f35.js.map": "/travel-itinerary-app/static/js/main.b3a30f35.js.map"
+    "main.ee2cb8f4.js.map": "/travel-itinerary-app/static/js/main.ee2cb8f4.js.map"
   },
   "entrypoints": [
     "static/css/main.14e3c6d0.css",
-    "static/js/main.b3a30f35.js"
+    "static/js/main.ee2cb8f4.js"
   ]
 }
