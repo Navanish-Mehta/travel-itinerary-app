@@ -40,11 +40,14 @@ export default function Search({ theme = 'light', toggleTheme }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const navigate = useNavigate();
 
-  const cardBg = theme === 'dark' ? '#23222a' : '#fff';
-  const cardText = theme === 'dark' ? '#fff' : '#18171c';
-  const secondaryText = theme === 'dark' ? '#bdbdbd' : '#6b6b6b';
-  const footerBg = theme === 'dark' ? '#23222a' : '#e0e0e0';
-  const highlight = theme === 'dark' ? '#d6ff00' : '#b3d900';
+  // Theme-related variables
+  const themeColors = {
+    cardBg: theme === 'dark' ? '#23222a' : '#fff',
+    cardText: theme === 'dark' ? '#fff' : '#18171c',
+    secondaryText: theme === 'dark' ? '#bdbdbd' : '#6b6b6b',
+    footerBg: theme === 'dark' ? '#23222a' : '#e0e0e0',
+    highlight: theme === 'dark' ? '#d6ff00' : '#b3d900'
+  };
 
   function handleSearch(e) {
     e.preventDefault();
@@ -72,9 +75,9 @@ export default function Search({ theme = 'light', toggleTheme }) {
   }
 
   return (
-    <div style={{ background: theme === 'dark' ? '#18171c' : '#f7f7fa', minHeight: '100vh', paddingBottom: 80, color: cardText, transition: 'background 0.3s, color 0.3s' }}>
+    <div style={{ background: themeColors.cardBg, minHeight: '100vh', paddingBottom: 80, color: themeColors.cardText, transition: 'background 0.3s, color 0.3s' }}>
       {/* Theme Toggle */}
-      <button onClick={toggleTheme} style={{ position: 'fixed', top: 18, right: 18, zIndex: 200, background: theme === 'dark' ? '#23222a' : '#e0e0e0', color: theme === 'dark' ? '#fff' : '#23222a', border: 'none', borderRadius: 18, padding: '8px 16px', fontWeight: 600, cursor: 'pointer', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
+      <button onClick={toggleTheme} style={{ position: 'fixed', top: 18, right: 18, zIndex: 200, background: themeColors.footerBg, color: themeColors.cardText, border: 'none', borderRadius: 18, padding: '8px 16px', fontWeight: 600, cursor: 'pointer', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
         {theme === 'dark' ? '🌙 Dark' : '☀️ Light'}
       </button>
       {/* Hero */}
@@ -95,7 +98,7 @@ export default function Search({ theme = 'light', toggleTheme }) {
 
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '32px 1rem 0 1rem' }}>
         {/* Search Form */}
-        <div style={{ background: cardBg, borderRadius: 16, boxShadow: '0 2px 12px #e0e0e0', marginBottom: 32, padding: 28 }}>
+        <div style={{ background: themeColors.cardBg, borderRadius: 16, boxShadow: '0 2px 12px #e0e0e0', marginBottom: 32, padding: 28 }}>
           <form onSubmit={handleSearch} style={{ display: 'flex', flexWrap: 'wrap', gap: 18, alignItems: 'center', justifyContent: 'center' }}>
             <input
               type="text"
@@ -111,9 +114,9 @@ export default function Search({ theme = 'light', toggleTheme }) {
           {/* Recent Searches */}
           {recent.length > 0 && (
             <div style={{ marginTop: 18, display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
-              <span style={{ color: secondaryText, fontWeight: 600 }}>Recent:</span>
+              <span style={{ color: themeColors.secondaryText, fontWeight: 600 }}>Recent:</span>
               {recent.map((item, i) => (
-                <span key={i} style={{ background: '#f7f7fa', color: cardText, borderRadius: 8, padding: '4px 12px', fontSize: 14, fontWeight: 600, boxShadow: '0 1px 4px #e0e0e0', cursor: 'pointer' }}>{item}</span>
+                <span key={i} style={{ background: '#f7f7fa', color: themeColors.cardText, borderRadius: 8, padding: '4px 12px', fontSize: 14, fontWeight: 600, boxShadow: '0 1px 4px #e0e0e0', cursor: 'pointer' }}>{item}</span>
               ))}
             </div>
           )}
@@ -128,8 +131,8 @@ export default function Search({ theme = 'light', toggleTheme }) {
                 key={cat.label}
                 onClick={() => handleCategory(cat.label)}
                 style={{
-                  background: selectedCategory === cat.label ? '#2d3bfa' : cardBg,
-                  color: selectedCategory === cat.label ? '#fff' : cardText,
+                  background: selectedCategory === cat.label ? '#2d3bfa' : themeColors.cardBg,
+                  color: selectedCategory === cat.label ? '#fff' : themeColors.cardText,
                   borderRadius: 12,
                   boxShadow: '0 1px 6px #e0e0e0',
                   padding: '16px 24px',
@@ -153,13 +156,13 @@ export default function Search({ theme = 'light', toggleTheme }) {
         <div style={{ marginBottom: 40 }}>
           <h2 style={{ fontWeight: 700, fontSize: 20, marginBottom: 14 }}>Search Results</h2>
           {loading ? (
-            <div style={{ textAlign: 'center', color: secondaryText, fontSize: 18, padding: 40 }}>Loading...</div>
+            <div style={{ textAlign: 'center', color: themeColors.secondaryText, fontSize: 18, padding: 40 }}>Loading...</div>
           ) : results.length === 0 ? (
             <div style={{ textAlign: 'center', color: '#bdbdbd', fontSize: 18, padding: 40 }}>No destinations found.</div>
           ) : (
             <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap' }}>
               {results.map(destination => (
-                <div key={destination.id} style={{ background: cardBg, borderRadius: 16, boxShadow: '0 2px 12px #e0e0e0', width: 220, minWidth: 180, marginBottom: 18, overflow: 'hidden', cursor: 'pointer', transition: 'box-shadow 0.2s' }}>
+                <div key={destination.id} style={{ background: themeColors.cardBg, borderRadius: 16, boxShadow: '0 2px 12px #e0e0e0', width: 220, minWidth: 180, marginBottom: 18, overflow: 'hidden', cursor: 'pointer', transition: 'box-shadow 0.2s' }}>
                   <img
                     src={destination.image}
                     alt={destination.name}
@@ -167,7 +170,7 @@ export default function Search({ theme = 'light', toggleTheme }) {
                   />
                   <div style={{ padding: '14px 12px' }}>
                     <h3 style={{ fontWeight: 700, fontSize: 16, marginBottom: 4 }}>{destination.name}</h3>
-                    <p style={{ fontSize: 14, color: secondaryText }}>{destination.description}</p>
+                    <p style={{ fontSize: 14, color: themeColors.secondaryText }}>{destination.description}</p>
                   </div>
                 </div>
               ))}
@@ -180,7 +183,7 @@ export default function Search({ theme = 'light', toggleTheme }) {
           <h2 style={{ fontWeight: 700, fontSize: 20, marginBottom: 14 }}>Recommended for You</h2>
           <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap' }}>
             {recommended.map(destination => (
-              <div key={destination.id} style={{ background: cardBg, borderRadius: 16, boxShadow: '0 2px 12px #e0e0e0', width: 220, minWidth: 180, marginBottom: 18, overflow: 'hidden', cursor: 'pointer', transition: 'box-shadow 0.2s' }}>
+              <div key={destination.id} style={{ background: themeColors.cardBg, borderRadius: 16, boxShadow: '0 2px 12px #e0e0e0', width: 220, minWidth: 180, marginBottom: 18, overflow: 'hidden', cursor: 'pointer', transition: 'box-shadow 0.2s' }}>
                 <img
                   src={destination.image}
                   alt={destination.name}
@@ -188,7 +191,7 @@ export default function Search({ theme = 'light', toggleTheme }) {
                 />
                 <div style={{ padding: '14px 12px' }}>
                   <h3 style={{ fontWeight: 700, fontSize: 16, marginBottom: 4 }}>{destination.name}</h3>
-                  <p style={{ fontSize: 14, color: secondaryText }}>{destination.description}</p>
+                  <p style={{ fontSize: 14, color: themeColors.secondaryText }}>{destination.description}</p>
                 </div>
               </div>
             ))}
@@ -201,7 +204,7 @@ export default function Search({ theme = 'light', toggleTheme }) {
         left: 0,
         bottom: 0,
         width: '100vw',
-        background: footerBg,
+        background: themeColors.footerBg,
         height: 68,
         display: 'flex',
         justifyContent: 'center',
@@ -219,8 +222,8 @@ export default function Search({ theme = 'light', toggleTheme }) {
             <svg width="26" height="26" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="none"/><circle cx="11" cy="11" r="6" stroke="#bdbdbd" strokeWidth="2"/><path d="M20 20l-3.5-3.5" stroke="#bdbdbd" strokeWidth="2" strokeLinecap="round"/></svg>
           </div>
           {/* Add Icon */}
-          <div style={{ width: 44, height: 44, borderRadius: '50%', background: cardBg, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `2px solid ${highlight}`, cursor: 'pointer' }} onClick={() => navigate('/onboarding')}>
-            <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="none"/><path d="M12 7v10M7 12h10" stroke={highlight} strokeWidth="2.5" strokeLinecap="round"/></svg>
+          <div style={{ width: 44, height: 44, borderRadius: '50%', background: themeColors.cardBg, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `2px solid ${themeColors.highlight}`, cursor: 'pointer' }} onClick={() => navigate('/onboarding')}>
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="none"/><path d="M12 7v10M7 12h10" stroke={themeColors.highlight} strokeWidth="2.5" strokeLinecap="round"/></svg>
           </div>
           {/* Heart Icon */}
           <div style={{ width: 44, height: 44, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }} onClick={() => navigate('/favorites')}>
