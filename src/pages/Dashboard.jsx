@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/Dashboard.css';
 
 const trip = {
   city: 'TOKYO',
@@ -10,125 +11,115 @@ const trip = {
   activities: 14,
 };
 
-const flight = {
-  date: '26.01.2025, 10:50 am',
-  from: 'DEL',
-  fromCity: 'Delhi, India',
-  to: 'NRT',
-  toCity: 'Narita, Tokyo',
-};
-
-const hotels = [
+const flights = [
   {
-    name: 'Shinagawa Prince Hotel',
-    rating: 4.0,
-    status: 'Confirmed',
-    checkin: '26.01.2025, 11:15 pm',
-    checkout: '28.01.2025, 11:15 am',
-    nights: 2,
-    image: 'https://images.unsplash.com/photo-1718165804028-fb2c4574ce12?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    id: 1,
+    airline: 'Japan Airlines',
+    flightNo: 'JL123',
+    departure: { city: 'New York', time: '10:00 AM', date: '27.01.2025' },
+    arrival: { city: 'Tokyo', time: '2:00 PM', date: '28.01.2025' },
+    duration: '14h 00m',
+    status: 'Confirmed'
   },
   {
-    name: 'Mercure Tokyo Hotel',
-    rating: 4.1,
-    status: 'Pending',
-    checkin: '28.01.2025, 6:00 pm',
-    checkout: '30.01.2025, 11:15 am',
-    nights: 2,
-    image: 'https://images.unsplash.com/photo-1723382056183-823d065ae8ed?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    name: 'APA Hotel Shinjuku',
-    rating: 4.2,
-    status: 'Confirmed',
-    checkin: '30.01.2025, 2:00 pm',
-    checkout: '31.01.2025, 11:00 am',
-    nights: 1,
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    name: 'Hotel Gracery Shinjuku',
-    rating: 4.3,
-    status: 'Pending',
-    checkin: '31.01.2025, 3:00 pm',
-    checkout: '02.02.2025, 11:00 am',
-    nights: 2,
-    image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80',
-  },
+    id: 2,
+    airline: 'ANA',
+    flightNo: 'NH456',
+    departure: { city: 'Tokyo', time: '4:00 PM', date: '02.02.2025' },
+    arrival: { city: 'New York', time: '3:00 PM', date: '02.02.2025' },
+    duration: '11h 00m',
+    status: 'Confirmed'
+  }
 ];
 
-const activitiesByDate = {
-  '27': [
-    {
-      title: 'Senso-ji Temple & Nakamise Shopping Street Senso-ji',
-      time: '8:15 am Morning',
-      duration: '3 hours',
-      pickup: 'From Hotel',
-      image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80',
-    },
-    {
-      title: 'Tokyo Sky Tree',
-      time: '1:00 pm Afternoon',
-      duration: '3 hours',
-      pickup: 'From Nakamise Street',
-      image: 'https://images.unsplash.com/photo-1506089676908-3592f7389d4d?auto=format&fit=crop&w=800&q=80',
-    },
-    {
-      title: 'Kimono Wearing',
-      time: 'Anytime before 8:00pm',
-      duration: '1-2 hours',
-      pickup: 'From Hotel',
-      image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80',
-    },
-  ],
-  '28': [
-    {
-      title: 'Meiji Shrine',
-      time: '9:00 am Morning',
-      duration: '2 hours',
-      pickup: 'From Hotel',
-      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-    },
-    {
-      title: 'Harajuku Shopping',
-      time: '11:30 am',
-      duration: '2 hours',
-      pickup: 'From Meiji Shrine',
-      image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80',
-    },
-    {
-      title: 'Shibuya Crossing',
-      time: '2:00 pm',
-      duration: '1 hour',
-      pickup: 'From Harajuku',
-      image: 'https://images.unsplash.com/photo-1506089676908-3592f7389d4d?auto=format&fit=crop&w=800&q=80',
-    },
-    {
-      title: 'Tokyo Tower',
-      time: '4:00 pm',
-      duration: '2 hours',
-      pickup: 'From Shibuya',
-      image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80',
-    },
-  ],
-  '29': [
-    {
-      title: 'Imperial Palace',
-      time: '10:00 am',
-      duration: '2 hours',
-      pickup: 'From Hotel',
-      image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80',
-    }
-  ],
-  '30': [],
-  '31': [],
-  '1': [],
-};
+const accommodations = [
+  {
+    id: 1,
+    name: 'Park Hotel Tokyo',
+    type: 'Hotel',
+    checkIn: '28.01.2025',
+    checkOut: '02.02.2025',
+    address: '1-7-1 Higashi-Shimbashi, Minato-ku, Tokyo',
+    rating: 4.5,
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 2,
+    name: 'Shinjuku Granbell Hotel',
+    type: 'Hotel',
+    checkIn: '02.02.2025',
+    checkOut: '03.02.2025',
+    address: '2-14-5 Kabukicho, Shinjuku-ku, Tokyo',
+    rating: 4.3,
+    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80'
+  }
+];
+
+const activities = [
+  {
+    date: '28.01.2025',
+    items: [
+      {
+        id: 1,
+        name: 'Tokyo Skytree Visit',
+        time: '10:00 AM - 12:00 PM',
+        location: 'Tokyo Skytree',
+        type: 'Sightseeing',
+        image: 'https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        id: 2,
+        name: 'Sushi Making Class',
+        time: '2:00 PM - 4:00 PM',
+        location: 'Tsukiji Outer Market',
+        type: 'Food & Culture',
+        image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80'
+      }
+    ]
+  },
+  {
+    date: '29.01.2025',
+    items: [
+      {
+        id: 3,
+        name: 'Mount Fuji Day Trip',
+        time: '8:00 AM - 6:00 PM',
+        location: 'Mount Fuji',
+        type: 'Nature',
+        image: 'https://images.unsplash.com/photo-1570459029078-1c2a7f59b5e3?auto=format&fit=crop&w=800&q=80'
+      }
+    ]
+  },
+  {
+    date: '30.01.2025',
+    items: [
+      {
+        id: 4,
+        name: 'Shibuya Shopping',
+        time: '11:00 AM - 4:00 PM',
+        location: 'Shibuya District',
+        type: 'Shopping',
+        image: 'https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        id: 5,
+        name: 'Robot Restaurant Show',
+        time: '7:00 PM - 9:00 PM',
+        location: 'Shinjuku',
+        type: 'Entertainment',
+        image: 'https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=800&q=80'
+      }
+    ]
+  }
+];
 
 function Dashboard({ theme = 'light', toggleTheme }) {
   const navigate = useNavigate();
   const [selectedDate] = useState('27');
-  const activities = activitiesByDate[selectedDate] || [];
+  const activitiesByDate = activities.find(day => day.date === selectedDate)?.items || [];
+  const [showAllFlights, setShowAllFlights] = useState(false);
+  const [showAllAccommodations, setShowAllAccommodations] = useState(false);
+  const [showAllActivities, setShowAllActivities] = useState(false);
 
   // Theme-related variables
   const themeColors = {
@@ -148,136 +139,103 @@ function Dashboard({ theme = 'light', toggleTheme }) {
   const openOnboarding = () => navigate('/onboarding');
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: theme === 'dark' ? '#18171c' : '#f7f7fa',
-      color: themeColors.cardText,
-      fontFamily: 'Inter, sans-serif',
-      paddingBottom: 90,
-      transition: 'background 0.3s, color 0.3s',
-    }}>
-      {/* Theme Toggle */}
-      <button onClick={toggleTheme} style={{ position: 'fixed', top: 18, right: 18, zIndex: 200, background: theme === 'dark' ? '#23222a' : '#e0e0e0', color: theme === 'dark' ? '#fff' : '#23222a', border: 'none', borderRadius: 18, padding: '8px 16px', fontWeight: 600, cursor: 'pointer', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
-        {theme === 'dark' ? '🌙 Dark' : '☀️ Light'}
-      </button>
-      <div style={{ maxWidth: 420, margin: '0 auto', padding: '0 1rem' }}>
-        {/* Hero/Trip Card */}
-        <div style={{ margin: '32px 0 24px 0', borderRadius: 24, overflow: 'hidden', boxShadow: theme === 'dark' ? '0 6px 32px rgba(0,0,0,0.18)' : '0 2px 12px #e0e0e0', background: themeColors.cardBg }}>
-          <div style={{ position: 'relative', height: 80 }}>
-            <img src={trip.image} alt={trip.city} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', borderRadius: '0' }} />
-            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(90deg, rgba(24,23,28,0.7) 60%, rgba(24,23,28,0.1) 100%)' }} />
-            <div style={{ position: 'absolute', top: 10, left: 18, color: '#fff', zIndex: 2 }}>
-              <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: 1, lineHeight: 1.1 }}>{trip.city}</div>
-              <div style={{ fontSize: 12, fontWeight: 500, opacity: 0.92 }}>{trip.dates}</div>
-            </div>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: themeColors.cardBg, color: themeColors.cardText, padding: '12px 20px', borderRadius: '0 0 24px 24px', marginTop: -6 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 18, fontSize: 15 }}>
-              <span role="img" aria-label="days">🗓️</span> {trip.days} Days
-              <span role="img" aria-label="travelers">👥</span> {trip.travelers}
-              <span role="img" aria-label="activities">🗺️</span> {trip.activities}
-            </div>
-          </div>
+    <div className="dashboard">
+      <div className="trip-overview">
+        <div className="trip-header">
+          <h1>{trip.city}</h1>
+          <p>{trip.dates}</p>
         </div>
-        {/* Flights Section */}
-        <div style={{ marginBottom: 24 }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M2 16l20-5-8-2-2-8-5 20z" stroke={themeColors.highlight} strokeWidth="2"/></svg>
-              <span style={{ fontWeight: 700, fontSize: 18 }}>Flights</span>
-            </div>
-            <button style={{ background: themeColors.highlight, color: themeColors.cardBg, border: 'none', borderRadius: 16, padding: '4px 14px', fontWeight: 600, fontSize: 14, cursor: 'pointer', boxShadow: '0 2px 8px rgba(0,0,0,0.10)' }}>See all</button>
-          </div>
-          <div style={{ background: themeColors.cardBg, borderRadius: 18, boxShadow: theme === 'dark' ? '0 4px 24px rgba(0,0,0,0.12)' : '0 2px 8px #e0e0e0', padding: 18, display: 'flex', alignItems: 'center', gap: 18 }}>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontWeight: 600, fontSize: 16 }}>{flight.from} → {flight.to}</div>
-              <div style={{ color: themeColors.secondaryText, fontSize: 13 }}>{flight.fromCity} → {flight.toCity}</div>
-              <div style={{ color: themeColors.secondaryText, fontSize: 13, marginTop: 2 }}>{flight.date}</div>
-            </div>
-            <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill={themeColors.accentBg}/><path d="M4 12L12 5l8 7" stroke={themeColors.highlight} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </div>
-        </div>
-        {/* Accommodation Section */}
-        <div style={{ marginBottom: 24 }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2" stroke={themeColors.highlight} strokeWidth="2"/><path d="M16 3v4M8 3v4" stroke={themeColors.highlight} strokeWidth="2"/></svg>
-              <span style={{ fontWeight: 700, fontSize: 18 }}>Accommodation</span>
-            </div>
-            <button style={{ background: themeColors.highlight, color: themeColors.cardBg, border: 'none', borderRadius: 16, padding: '4px 14px', fontWeight: 600, fontSize: 14, cursor: 'pointer', boxShadow: '0 2px 8px rgba(0,0,0,0.10)' }}>See all</button>
-          </div>
-          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-            {hotels.map((hotel, i) => (
-              <div key={i} style={{ background: themeColors.cardBg, borderRadius: 16, boxShadow: theme === 'dark' ? '0 2px 12px rgba(0,0,0,0.14)' : '0 1px 4px #e0e0e0', width: 'calc(50% - 7px)', minWidth: 150, marginBottom: 10, overflow: 'hidden', border: `1.5px solid ${hotel.status === 'Confirmed' ? themeColors.highlight : themeColors.accentBg}` }}>
-                <img src={hotel.image} alt={hotel.name} style={{ width: '100%', height: 50, objectFit: 'cover', borderRadius: '0' }} />
-                <div style={{ padding: '10px 12px' }}>
-                  <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 2 }}>{hotel.name}</div>
-                  <div style={{ fontSize: 12, color: themeColors.secondaryText }}>{hotel.nights} nights</div>
-                  <div style={{ fontSize: 12, color: themeColors.secondaryText }}>{hotel.checkin} - {hotel.checkout}</div>
-                  <div style={{ fontSize: 12, color: hotel.status === 'Confirmed' ? themeColors.highlight : themeColors.accentBg, fontWeight: 600, marginTop: 2 }}>{hotel.status}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        {/* Activities Section */}
-        <div style={{ marginBottom: 24 }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4" stroke={themeColors.highlight} strokeWidth="2"/><path d="M8 12h8M12 8v8" stroke={themeColors.highlight} strokeWidth="2"/></svg>
-              <span style={{ fontWeight: 700, fontSize: 18 }}>Activities</span>
-            </div>
-            <button style={{ background: themeColors.highlight, color: themeColors.cardBg, border: 'none', borderRadius: 16, padding: '4px 14px', fontWeight: 600, fontSize: 14, cursor: 'pointer', boxShadow: '0 2px 8px rgba(0,0,0,0.10)' }}>See all</button>
-          </div>
-          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-            {activities.map((act, i) => (
-              <div key={i} style={{ background: themeColors.cardBg, borderRadius: 16, boxShadow: theme === 'dark' ? '0 2px 12px rgba(0,0,0,0.14)' : '0 1px 4px #e0e0e0', width: 'calc(50% - 7px)', minWidth: 150, marginBottom: 10, overflow: 'hidden', border: `1.5px solid ${themeColors.highlight}` }}>
-                <img src={act.image} alt={act.title} style={{ width: '100%', height: 50, objectFit: 'cover', borderRadius: '0' }} />
-                <div style={{ padding: '10px 12px' }}>
-                  <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 2 }}>{act.title}</div>
-                  <div style={{ fontSize: 12, color: themeColors.secondaryText }}>{act.time} • {act.duration}</div>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="trip-image">
+          <img src={trip.image} alt={trip.city} />
         </div>
       </div>
-      {/* Fixed Footer */}
-      <div style={{
-        position: 'fixed',
-        left: 0,
-        bottom: 0,
-        width: '100vw',
-        background: themeColors.footerBg,
-        height: 68,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        zIndex: 100,
-        boxShadow: '0 -2px 16px rgba(0,0,0,0.18)'
-      }}>
-        <div style={{ display: 'flex', width: 393, maxWidth: '100vw', justifyContent: 'space-between', alignItems: 'center', padding: '0 32px' }}>
-          {/* Home Icon */}
-          <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#353c1a', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }} onClick={goHome}>
-            <svg width="26" height="26" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="none"/><path d="M4 12L12 5l8 7" stroke="#d6ff00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><rect x="8" y="14" width="8" height="5" rx="1.5" stroke="#d6ff00" strokeWidth="2"/></svg>
+
+      <div className="dashboard-sections">
+        <section className="flights-section">
+          <div className="section-header">
+            <h2>Flights</h2>
+            <button onClick={() => setShowAllFlights(!showAllFlights)}>
+              {showAllFlights ? 'Show Less' : 'See All'}
+            </button>
           </div>
-          {/* Search Icon */}
-          <div style={{ width: 44, height: 44, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }} onClick={goSearch}>
-            <svg width="26" height="26" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="none"/><circle cx="11" cy="11" r="6" stroke="#bdbdbd" strokeWidth="2"/><path d="M20 20l-3.5-3.5" stroke="#bdbdbd" strokeWidth="2" strokeLinecap="round"/></svg>
+          <div className="flights-list">
+            {flights.slice(0, showAllFlights ? flights.length : 1).map(flight => (
+              <div key={flight.id} className="flight-card">
+                <div className="flight-info">
+                  <h3>{flight.airline} {flight.flightNo}</h3>
+                  <div className="flight-details">
+                    <div className="departure">
+                      <p>{flight.departure.time}</p>
+                      <p>{flight.departure.city}</p>
+                      <p>{flight.departure.date}</p>
+                    </div>
+                    <div className="duration">
+                      <div className="flight-line"></div>
+                      <p>{flight.duration}</p>
+                    </div>
+                    <div className="arrival">
+                      <p>{flight.arrival.time}</p>
+                      <p>{flight.arrival.city}</p>
+                      <p>{flight.arrival.date}</p>
+                    </div>
+                  </div>
+                  <span className="status">{flight.status}</span>
+                </div>
+              </div>
+            ))}
           </div>
-          {/* Add Icon */}
-          <div style={{ width: 44, height: 44, borderRadius: '50%', background: themeColors.cardBg, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `2px solid ${themeColors.highlight}`, cursor: 'pointer' }} onClick={openOnboarding}>
-            <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="none"/><path d="M12 7v10M7 12h10" stroke={themeColors.highlight} strokeWidth="2.5" strokeLinecap="round"/></svg>
+        </section>
+
+        <section className="accommodations-section">
+          <div className="section-header">
+            <h2>Accommodations</h2>
+            <button onClick={() => setShowAllAccommodations(!showAllAccommodations)}>
+              {showAllAccommodations ? 'Show Less' : 'See All'}
+            </button>
           </div>
-          {/* Heart Icon */}
-          <div style={{ width: 44, height: 44, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }} onClick={goFavorites}>
-            <svg width="26" height="26" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="none"/><path d="M16.5 8.5a3.5 3.5 0 0 0-5 0l-.5.5-.5-.5a3.5 3.5 0 0 0-5 5l.5.5L12 19l6.5-6.5.5-.5a3.5 3.5 0 0 0-5-5z" stroke="#bdbdbd" strokeWidth="2"/></svg>
+          <div className="accommodations-list">
+            {accommodations.slice(0, showAllAccommodations ? accommodations.length : 1).map(accommodation => (
+              <div key={accommodation.id} className="accommodation-card">
+                <img src={accommodation.image} alt={accommodation.name} />
+                <div className="accommodation-info">
+                  <h3>{accommodation.name}</h3>
+                  <p className="type">{accommodation.type}</p>
+                  <p className="dates">Check-in: {accommodation.checkIn}</p>
+                  <p className="dates">Check-out: {accommodation.checkOut}</p>
+                  <p className="address">{accommodation.address}</p>
+                  <div className="rating">
+                    <span>★</span>
+                    <span>{accommodation.rating}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-          {/* User Icon */}
-          <div style={{ width: 44, height: 44, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }} onClick={goProfile}>
-            <svg width="26" height="26" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="none"/><circle cx="12" cy="10" r="4" stroke="#bdbdbd" strokeWidth="2"/><path d="M4 20c0-2.5 3.5-4 8-4s8 1.5 8 4" stroke="#bdbdbd" strokeWidth="2"/></svg>
+        </section>
+
+        <section className="activities-section">
+          <div className="section-header">
+            <h2>Activities</h2>
+            <button onClick={() => setShowAllActivities(!showAllActivities)}>
+              {showAllActivities ? 'Show Less' : 'See All'}
+            </button>
           </div>
-        </div>
+          <div className="activities-list">
+            {activities.slice(0, showAllActivities ? activities.length : 2).map(day => (
+              <div key={day.date} className="day-activities">
+                <h3 className="date-header">{day.date}</h3>
+                {day.items.map(activity => (
+                  <div key={activity.id} className="activity-card">
+                    <h4>{activity.name}</h4>
+                    <p className="time">{activity.time}</p>
+                    <p className="location">{activity.location}</p>
+                    <p className="type">{activity.type}</p>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );

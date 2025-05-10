@@ -1,0 +1,288 @@
+.dashboard {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.trip-overview {
+  margin-bottom: 30px;
+}
+
+.trip-header {
+  margin-bottom: 15px;
+}
+
+.trip-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.trip-header p {
+  color: var(--secondary-text);
+  font-size: 1rem;
+}
+
+.trip-image {
+  width: 100%;
+  height: 200px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.trip-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dashboard-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.section-header button {
+  background: var(--highlight);
+  color: var(--card-bg);
+  border: none;
+  border-radius: 16px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.section-header button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Flights Section */
+.flights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.flight-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.flight-info h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.flight-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.departure, .arrival {
+  text-align: center;
+}
+
+.duration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.flight-line {
+  width: 100px;
+  height: 2px;
+  background: var(--highlight);
+  position: relative;
+}
+
+.flight-line::before,
+.flight-line::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--highlight);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.flight-line::before {
+  left: 0;
+}
+
+.flight-line::after {
+  right: 0;
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--highlight);
+  color: var(--card-bg);
+}
+
+/* Accommodations Section */
+.accommodations-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.accommodation-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.accommodation-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.accommodation-info {
+  padding: 15px;
+}
+
+.accommodation-info h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.type {
+  color: var(--secondary-text);
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.dates {
+  color: var(--secondary-text);
+  font-size: 0.9rem;
+  margin-bottom: 3px;
+}
+
+.address {
+  color: var(--secondary-text);
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--highlight);
+  font-weight: 600;
+}
+
+/* Activities Section */
+.activities-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.day-activities {
+  background: var(--card-bg);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.date-header {
+  padding: 15px;
+  background: var(--highlight);
+  color: var(--card-bg);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.activity-card {
+  padding: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.activity-card:last-child {
+  border-bottom: none;
+}
+
+.activity-card h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.activity-card .time,
+.activity-card .location,
+.activity-card .type {
+  color: var(--secondary-text);
+  font-size: 0.9rem;
+  margin-bottom: 3px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 15px;
+  }
+
+  .trip-image {
+    height: 150px;
+  }
+
+  .accommodations-list,
+  .activities-list {
+    grid-template-columns: 1fr;
+  }
+
+  .flight-details {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .flight-line {
+    width: 2px;
+    height: 50px;
+  }
+
+  .flight-line::before,
+  .flight-line::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .flight-line::before {
+    top: 0;
+  }
+
+  .flight-line::after {
+    top: 100%;
+  }
+} 
